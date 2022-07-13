@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Todo List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <div class="my-4">
+        <h1 class="text-center">Todo List</h1>
+      <div class="form-group">
+        <label for="text" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          aria-describedby="emailHelp"
+        />
+        <div id="emailHelp" class="form-text">Add items to do list.</div>
+      </div>
+      <div class="form-group">
+        <label for="Description" class="form-label">Description Area</label>
+        <input type="text" class="form-control" id="description" />
+      </div>
+      <button type="submit" id="add" class="btn btn-primary">Add to list</button>
+    <div id="items" class="my-4">
+        <h2>Your List</h2>
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No.</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <th scope="row">1</th>
+            <td>Get</td>
+            <td>Otto</td>
+            <td><button class="btn btn-sm btn-primary">Delete</button></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<link href="script.js" rel="script"/>  
+<script>
+    add = document.getElementById("add");
+add.addEventListener("click",()=>{
+    console.log("working")
+    tit = document.getElementById('title').value;
+    desc = document.getElementById('description').value;
+    if (localStorage.getItem('itemJson')==null){
+        itemJsonArray = [];
+        itemJsonArray.push(tit,desc);
+        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+
+    }
+    else{
+        itemJsonArrayStr = localStorage.getItem('itemJson');
+        itemJsonArray = JSON.parse(itemJsonArrayStr);
+        itemJsonArray.push(tit,desc);
+        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+    }
+    //Display
+    
+
+});
+</script>
+
+</body>
+</html>
